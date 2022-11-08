@@ -33,11 +33,24 @@ public class DemoFilters implements Drawing {
 	Filter[] filters = {			
 			new Grayscale(),
 			new Invert(),
+			new Sepia(),
+			new Desaturate(0.6),
+			new Saturate(0.5),
+			new Colorize(216, 0.5),
+			new Accent(0),
 
+			new FlipHorizontal(),
 			new FlipVertical(),
+			new Rotate180(),
 			new Zoom(2.0),
+			new Wave(5, 100),
 			
+			// vežbe 3
+			new Jitter(10.0),
+			new Vignette(),
 			// ----
+			
+			new CombinedFilter(new Jitter(10), new ConvolutionFilter(ConvolutionFilter.BLUR_3x3)),
 			
 			new ConvolutionFilter(ConvolutionFilter.BOX_BLUR_3x3),
 			new ConvolutionFilter(ConvolutionFilter.BLUR_5x5),
