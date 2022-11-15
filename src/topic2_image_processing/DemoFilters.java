@@ -10,13 +10,26 @@ import mars.drawingx.drawing.View;
 import mars.drawingx.gadgets.annotations.GadgetBoolean;
 import mars.drawingx.gadgets.annotations.GadgetInteger;
 import mars.geometry.Vector;
+import topic2_image_processing.filters.CombinedFilter;
 import topic2_image_processing.filters.ConvolutionFilter;
 import topic2_image_processing.filters.Filter;
+import topic2_image_processing.filters.color.Accent;
+import topic2_image_processing.filters.color.Colorize;
+import topic2_image_processing.filters.color.Desaturate;
 import topic2_image_processing.filters.color.Grayscale;
 import topic2_image_processing.filters.color.Invert;
+import topic2_image_processing.filters.color.Saturate;
+import topic2_image_processing.filters.color.Sepia;
+import topic2_image_processing.filters.displacement.FlipHorizontal;
 import topic2_image_processing.filters.displacement.FlipVertical;
+import topic2_image_processing.filters.displacement.Jitter;
+import topic2_image_processing.filters.displacement.Lens;
+import topic2_image_processing.filters.displacement.Rotate180;
+import topic2_image_processing.filters.displacement.Swirl;
+import topic2_image_processing.filters.displacement.Wave;
 import topic2_image_processing.filters.displacement.Zoom;
 import topic2_image_processing.filters.misc.Sobel;
+import topic2_image_processing.filters.misc.Vignette;
 
 
 public class DemoFilters implements Drawing {
@@ -45,10 +58,8 @@ public class DemoFilters implements Drawing {
 			new Zoom(2.0),
 			new Wave(5, 100),
 			
-			// vežbe 3
 			new Jitter(10.0),
 			new Vignette(),
-			// ----
 			
 			new CombinedFilter(new Jitter(10), new ConvolutionFilter(ConvolutionFilter.BLUR_3x3)),
 			
@@ -57,23 +68,26 @@ public class DemoFilters implements Drawing {
 			new ConvolutionFilter(ConvolutionFilter.SHARPEN),
 			new ConvolutionFilter(ConvolutionFilter.DETECT_EDGES),
 			new Sobel(),
+			
+			new Lens(0.5),
+			new Swirl(4.5, 0.015)
 	};
 
 	String[] fileNames = {
-			"monalisa.png",
-			"building.png",
-			"catparty.png",
-			"christmas.png",
-			"couple.png",
-			"dive.png",
-			"doggo.png",
-			"fall.png",
-			"forecast.png",
-			"kitchen.png",
-			"meterologist.png",
-			"office.png",
-			"skirts.png",
-			"waiting.png",
+			"Mona Lisa.jpg",
+			"building.jpg",
+			"catparty.jpg",
+			"christmas.jpg",
+			"couple.jpg",
+			"dive.jpg",
+			"doggo.jpg",
+			"fall.jpg",
+			"forecast.jpg",
+			"kitchen.jpg",
+			"meterologist.jpg",
+			"office.jpg",
+			"skirts.jpg",
+			"waiting.jpg",
 	};
 	
 
