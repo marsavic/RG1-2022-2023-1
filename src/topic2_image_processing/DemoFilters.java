@@ -74,7 +74,7 @@ public class DemoFilters implements Drawing {
 	};
 
 	String[] fileNames = {
-			"Mona Lisa.jpg",
+			"monalisa.jpg",
 			"building.jpg",
 			"catparty.jpg",
 			"christmas.jpg",
