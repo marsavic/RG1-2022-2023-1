@@ -36,7 +36,17 @@ public class Overlap extends BinaryFilter {
 		
 		for (int y = 0; y < h; y++) {
 			for (int x = 0; x < w; x++) {
+				Color inputColor1 = pr1.getColor(x, y);
+				Color inputColor2 = pr2.getColor(x, y);
 				
+				Color outputColor = new Color(
+						(1 - opacity) * inputColor1.getRed()     + opacity * inputColor2.getRed()    ,
+						(1 - opacity) * inputColor1.getGreen()   + opacity * inputColor2.getGreen()  ,
+						(1 - opacity) * inputColor1.getBlue()    + opacity * inputColor2.getBlue()   ,
+						1
+				);
+				
+				pw.setColor(x, y, outputColor);
 			}
 		}
 		
