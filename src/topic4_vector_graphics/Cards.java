@@ -26,7 +26,7 @@ public class Cards implements Drawing {
 	Vector d = new Vector(16, 16);
 
 	
-	
+	//235023289427398423l - seed
 	
 	@Override
 	public void draw(View view) {
