@@ -29,7 +29,7 @@ import static mars.utils.Numeric.tanT;
 
 // Ovaj program je samo za demonstraciju, ne morate se truditi da razumete detalje implementacije.
 
-public class Tree implements Drawing {
+public class WindyTree implements Drawing {
 	@GadgetAnimation(start = true)
 	double time = 0.0;
 
