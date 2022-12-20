@@ -41,7 +41,34 @@ public class Triangle implements Drawing {
 		view.setLineWidth(4);
 		view.strokePolygon(p0, p1, p2);
 		
+		double l0 = p0.distanceTo(p1);                  // Duzina stranice 0
+		double l1 = p1.distanceTo(p2);                  // Duzina stranice 1
+		double l2 = p2.distanceTo(p0);                  // Duzina stranice 2
+		double l = l0 + l1 + l2;                        // Obim trougla
 		
+		double t0 = 0;                                  // Momenat prolaska kroz teme 0
+		double t1 = t0 + l0;                           // Momenat prolaska kroz teme 1
+		double t2 = t1 + l1;                           // Momenat prolaska kroz teme 2
+		
+		// Racunamo parametar t iz [0, 1), koji nam govori gde smo u trouglu. Kada je 0 onda smo u tacki p0.
+		// time * speed                     = ukupno predjena razdaljina
+		// time * speed / l                 = koliko puta smo obisli trougao (npr. 3.46 puta)
+		// Numeric.mod(time * speed / l, 1) = gde smo trenutno u trouglu (npr. Numeric.mod(3.46, 1) = 0.46)
+		// Numeric.mod(x, m) je kao x % m samo sto uvek vraca broj iz [0, m), tj. "lepo" radi i za negativne vrednosti.
+		
+		double t = Numeric.mod(time * speed, l); 
+		
+		Vector q0, q1;    // Pocetna i krajnja tacka stranice na kojoj se nalazimo
+		double k;         // Parametar interpolacije za trenutnu stranicu iz [0, 1). 0 - na pocetoj tacki smo, 1 - na krajnjoj tacki smo
+		
+		if (t < t1) { q0 = p0; q1 = p1; k = (t - t0) / l0; } else   // Ako smo na stranici 0
+		if (t < t2) { q0 = p1; q1 = p2; k = (t - t1) / l1; } else   // Ako smo na stranici 1
+		            { q0 = p2; q1 = p0; k = (t - t2) / l2; }        // Ako smo na stranici 2
+		
+		Vector p = Vector.lerp(q0, q1, smootherstep(k)); // Racunamo poziciju interpolacijom izmedju pocetne i krajnje tacke.
+		
+		view.setFill(Color.ORANGERED);
+		view.fillCircleCentered(p, 16);
 	}
 	
 	private double smootherstep(double x) {
@@ -54,4 +81,3 @@ public class Triangle implements Drawing {
 	}
 	
 }
-
